@@ -1,9 +1,9 @@
+import HighLowBox from './containers/HighLowBox'
 import './App.css';
-import HighLow from './conatainers/HighLow'
 
 function App() {
   return (
-  <HighLow/>
+  <HighLowBox/>
   );
 }
 

@@ -1,23 +1,66 @@
-import {useState} from "react";
-import './App.css';
+import {useState, useEffect} from "react"
+import Card from "../components/Card"
+import Score from "../components/Score"
 
-function HighLow() {
+function HighLowBox() {
 
-    const [deck, setDeck] = useState("");
+    const [deck, setDeck] = useState("")
+    const [card, setCard] = useState("")
+    const [nextCard, setNextCard] = useState("")
 
-    const fetchDog =  function(){
-      fetch("https://dog.ceo/api/breeds/image/random")
+
+    useEffect(() => {
+        if (deck === ""){fetchDeck()
+        }else{drawCard()}
+    }, [deck])
+
+    useEffect(() => {
+      if (card === "" & deck !== ""){drawCard()}
+    },)
+
+    useEffect(() => {
+    if (nextCard === undefined){drawCard()}
+    },)
+
+
+
+    const fetchDeck =  () => {
+      fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
       .then(response => response.json())
-      .then(data => setDogImgUrl(data.message))
+      .then(data => setDeck(data.deck_id))
+      .catch(err => console.error)
     }
 
+    const drawCard =  () => {
+        setCard(nextCard)
+        fetch(`https://deckofcardsapi.com/api/deck/${deck}/draw/?count=1`)
+        .then(response => response.json())
+        .then(data => setNextCard(data.cards[0]))
+        .catch(err => console.error)
+      }
+
+
+
+    const onHigherClick = () => {
+      drawCard()
+
+    }
+
+    const onLowerClick = () => {
+      drawCard()   
+    }
+    
+
+
   return (
-    <div id="app">
-    <h1>RANDOGMISER</h1>
-    <img id="dog-img" src={dogImgUrl} />
-    <button onClick={fetchDog}>Gimme those dogs!</button>
+    <div id="high-low">
+    <h1>High Low</h1>
+    <button onClick={fetchDeck}>New Game</button>
+    <button onClick={drawCard}>Draw</button>
+    <Card card ={card}/>
+    <Score onHigherClick= {onHigherClick} onLowerClick= {onLowerClick} card ={card} nextCard ={nextCard}/>
     </div>
   );
 }
 
-export default HighLow;
+export default HighLowBox
