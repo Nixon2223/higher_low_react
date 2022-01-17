@@ -9,7 +9,9 @@ const LifeList = ({lives}) => {
 
 return (
     <>
+    <div id ="life-list">
         {lifeNodes}
+    </div>
     </>
     
 )

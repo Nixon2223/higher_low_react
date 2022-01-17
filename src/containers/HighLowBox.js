@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react"
 import Card from "../components/Card"
 import Score from "../components/Score"
+import './HighLow.css';
 
 function HighLowBox() {
 
@@ -54,9 +55,8 @@ function HighLowBox() {
 
   return (
     <div id="high-low">
-    <h1>High Low</h1>
-    <button onClick={fetchDeck}>New Game</button>
-    <button onClick={drawCard}>Draw</button>
+    {/* <button onClick={drawCard}>Draw</button> */}
+    <br></br>
     <Card card ={card}/>
     <Score onHigherClick= {onHigherClick} onLowerClick= {onLowerClick} card ={card} nextCard ={nextCard}/>
     </div>

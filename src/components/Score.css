@@ -1,0 +1,17 @@
+#score{
+    float: right;
+    text-align: center;
+    padding-left: 5px;
+}
+
+#life{
+    font-size: 20px;
+}
+#higher{
+    font-size: 40px;
+}
+
+#score-box{
+    font-size: 25px;
+    color: ivory;
+}

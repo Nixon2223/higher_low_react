@@ -4,7 +4,7 @@ const Life = () => {
     
     return (
         <>
-        <p  style={{color: "red"}}>&#9829;</p>
+        <p id="life"  style={{color: "red"}}>&#9829;</p>
         </>
     )
 }

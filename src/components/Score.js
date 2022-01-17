@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import LifeList from './LifeList';
+import './Score.css';
 
 const Score = ({onHigherClick, onLowerClick, card, nextCard}) => {
 
@@ -34,10 +35,12 @@ const Score = ({onHigherClick, onLowerClick, card, nextCard}) => {
 
     return (
         <>
+        <div id = "score">
         <button onClick={handleHigherClick}>higher</button>
         <button onClick={handleLowerClick}>lower</button>
-        <p>{score}</p>
+        <p id ="score-box">{score}</p>
         <LifeList lives = {lives}/>
+        </div>
         </>
     )
 }
