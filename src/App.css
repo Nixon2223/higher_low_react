@@ -20,3 +20,7 @@ h1 {
     width:240px;
     height: auto;
 }
+
+#play:hover {
+    background-color: black;
+}

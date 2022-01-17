@@ -8,6 +8,7 @@ function HighLowBox() {
     const [deck, setDeck] = useState("")
     const [card, setCard] = useState("")
     const [nextCard, setNextCard] = useState("")
+    const [gameOver, setGameOver] = useState(false)
 
 
     useEffect(() => {
@@ -22,8 +23,6 @@ function HighLowBox() {
     useEffect(() => {
     if (nextCard === undefined){drawCard()}
     },)
-
-
 
     const fetchDeck =  () => {
       fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
@@ -50,6 +49,10 @@ function HighLowBox() {
     const onLowerClick = () => {
       drawCard()   
     }
+
+    const onGameOver = () =>{
+      setGameOver(true)
+    }
     
 
 
@@ -57,8 +60,8 @@ function HighLowBox() {
     <div id="high-low">
     {/* <button onClick={drawCard}>Draw</button> */}
     <br></br>
-    <Card card ={card}/>
-    <Score onHigherClick= {onHigherClick} onLowerClick= {onLowerClick} card ={card} nextCard ={nextCard}/>
+    {gameOver === false? <Card  card ={card} /> : null}
+    <Score onHigherClick= {onHigherClick} onLowerClick= {onLowerClick} card ={card} nextCard ={nextCard} gameOver = {gameOver} onGameOver = {onGameOver}/>
     </div>
   );
 }
