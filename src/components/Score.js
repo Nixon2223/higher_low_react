@@ -12,12 +12,20 @@ const Score = ({onHigherClick, onLowerClick, card, nextCard, gameOver, onGameOve
     useEffect(() => {
         if (Number(lives.length) === 0){
             onGameOver()}
-        onHigherClick()
     },[lives], [score])
 
-    const handleHigherClick = () => {
-            onHigherClick()
-            if(scoreArr.indexOf(card.value) <= scoreArr.indexOf(nextCard.value)){
+    const handleHigherClick = async() => {
+        await higher()
+        onHigherClick()
+        }
+          
+    const handleLowerClick = async() => {
+        await lower()
+        onLowerClick()
+    }
+
+    const lower = () => {
+        if(scoreArr.indexOf(card.value) >= scoreArr.indexOf(nextCard.value)){
             setScore(score + 1)
             }else{
                 let redArr
@@ -25,19 +33,21 @@ const Score = ({onHigherClick, onLowerClick, card, nextCard, gameOver, onGameOve
                 redArr.pop()
                 setLives(redArr)
             }
-        }
-          
-    const handleLowerClick = () => {
-        onLowerClick()
-        if(scoreArr.indexOf(card.value) >= scoreArr.indexOf(nextCard.value)){
-        setScore(score + 1)
-        }else{
-            let redArr
-            redArr = [...lives]
-            redArr.pop()
-            setLives(redArr)
-        }
     }
+
+    const higher = () => {
+        if(scoreArr.indexOf(card.value) <= scoreArr.indexOf(nextCard.value)){
+            setScore(score + 1)
+            }else{
+                let redArr
+                redArr = [...lives]
+                redArr.pop()
+                setLives(redArr)
+            }
+    }
+
+
+
 
     return (
         <>
